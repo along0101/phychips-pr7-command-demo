@@ -10,7 +10,7 @@ class SerialReader:
         self.baudrate = baudrate
         self.ser = serial.Serial(port, baudrate)
 
-    # 从头到尾全部相加，如果大于0xff，取头尾字节相加，知道全部处理完毕。然后取他们的反码。最后如果遇到0xcc或者0xaa，减1.例如0xCC变成0xCB，0xAA变成0xA9
+    # 从头到尾全部相加，如果大于0xff，取头尾字节相加，直到全部处理完毕。然后取反码。最后如果遇到0xcc或者0xaa，减1.例如0xCC变成0xCB，0xAA变成0xA9
     def __checksum(self, buffer: bytearray):
         val = 0x00
         for byte in buffer:
